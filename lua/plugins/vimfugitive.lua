@@ -1,5 +1,5 @@
 return {
 	"tpope/vim-fugitive",
-	cmd = {"Git", "Gdiffsplit"},
+	cmd = {"Git", "Gdiffsplit", "Gvdiffsplit"},
 	lazy = true,
 }
