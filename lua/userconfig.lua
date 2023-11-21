@@ -1,9 +1,8 @@
 -- Setting options
 vim.o.relativenumber = true
 vim.o.cursorline = true
-vim.o.tabstop = 2
-vim.o.shiftwidth = 2
-
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
 -- Custom keymaps
 
 -- Telescope 
@@ -14,6 +13,12 @@ vim.keymap.set('n', '<leader>ff', function()
 	end
 	builtin.find_files()
 end, { desc = "Find files" })
+vim.keymap.set('n', '<leader>gf', function()
+	if builtin == nil then
+		builtin = require('telescope.builtin')
+	end
+	builtin.git_files()
+end, { desc = "Find Git Files" })
 vim.keymap.set('n', '<leader>fg', function()
 	if builtin == nil then
 		builtin = require('telescope.builtin')
@@ -39,6 +44,9 @@ vim.keymap.set("v", "<leader>fm", function()
 	vim.lsp.buf.format { async = true }
 end, { desc = "Lsp formatting in visual mdoe" })
 
+-- Diagnostic stuff
+vim.keymap.set("n", "ld", ":Trouble document_diagnostics<CR>",{ desc = "List document diagnostic" })
+
 -- Nvim Tree
 vim.keymap.set("n", "<leader>vt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim tree" })
 
@@ -48,15 +56,15 @@ vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Jump to next buffer" }
 vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Jump to previous buffer" })
 
 -- Restore the session
-vim.keymap.set("n", "<leader>sr", ":source ~/.config/nvim/sessions/vimbook.vim<CR>")
+vim.keymap.set("n", "<leader>sr", ":source ~/.config/nvim/sessions/vimbook.vim<CR>", {desc = "Restore previous session"})
 
 -- Auto cmds
 vim.api.nvim_create_autocmd({"VimLeavePre"}, {
 	command = "mks! ~/.config/nvim/sessions/vimbook.vim"
 })
--- vim.api.nvim_create_autocmd({"BufEnter"}, {
--- 	-- command = "source ~/.config/nvim/sessions/vimbook.vim"
--- })
-vim.api.nvim_create_autocmd({"InsertLeave"}, {
-	command = "w"
+-- vim.api.nvim_create_autocmd({"VimEnter"}, {
+	-- command = "source ~/.config/nvim/sessions/vimbook.vim"
+-- })  
+vim.api.nvim_create_autocmd({"TextChanged", "InsertLeave"}, {
+	command = "silent! w"
 })

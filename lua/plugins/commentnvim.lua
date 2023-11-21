@@ -1,6 +1,7 @@
 return {
 	'numToStr/Comment.nvim',
-	lazy = false,
+	lazy = true,
+	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		require('Comment').setup()
 	end
