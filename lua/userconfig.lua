@@ -1,8 +1,11 @@
 -- Setting options
 vim.o.relativenumber = true
 vim.o.cursorline = true
+vim.o.termguicolors = true
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
+vim.o.scrolloff = 8
+vim.cmd("colorscheme gruvbox")
 -- Custom keymaps
 
 -- Telescope 
@@ -57,11 +60,12 @@ vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Jump to previous b
 
 -- Restore the session
 vim.keymap.set("n", "<leader>sr", ":source ~/.config/nvim/sessions/vimbook.vim<CR>", {desc = "Restore previous session"})
+vim.keymap.set("n", "<leader>ms", ":mks! ~/.config/nvim/sessions/vimbook.vim<CR>", {desc = "Make a session"})
 
 -- Auto cmds
-vim.api.nvim_create_autocmd({"VimLeavePre"}, {
-	command = "mks! ~/.config/nvim/sessions/vimbook.vim"
-})
+-- vim.api.nvim_create_autocmd({"VimLeavePre"}, {
+-- 	command = "mks! ~/.config/nvim/sessions/vimbook.vim"
+-- })
 -- vim.api.nvim_create_autocmd({"VimEnter"}, {
 	-- command = "source ~/.config/nvim/sessions/vimbook.vim"
 -- })  
