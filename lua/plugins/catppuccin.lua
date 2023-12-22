@@ -4,10 +4,11 @@ return {
 	priority = 1000,
 	opts = {
 		no_bold = true,
-		color_overrides = {
-			mocha = {
-				base = "#202020",
-			}
-		}
+		transparent_background = true,
+		-- color_overrides = {
+		-- 	mocha = {
+		-- 		base = "#202020",
+		-- 	}
+		-- }
 	}
 }
