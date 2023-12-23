@@ -23,7 +23,6 @@ end, { desc = "Go to definition" })
 vim.keymap.set("n", "<leader>fm", function()
 	vim.lsp.buf.format { async = true }
 end, { desc = "Lsp formatting" })
-vim.keymap.set("v", "<leader>f", ":Format<CR>", { desc = "Formatting in visual mode" })
 vim.keymap.set("v", "<leader>fm", function()
 	vim.lsp.buf.format { async = true }
 end, { desc = "Lsp formatting in visual mdoe" })
