@@ -4,11 +4,6 @@ return {
 	priority = 1000,
 	opts = {
 		no_bold = true,
-		transparent_background = true,
-		-- color_overrides = {
-		-- 	mocha = {
-		-- 		base = "#202020",
-		-- 	}
-		-- }
+		flavour = "frappe",
 	}
 }
