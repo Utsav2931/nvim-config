@@ -4,6 +4,7 @@ return {
 	priority = 1000,
 	opts = {
 		no_bold = true,
-		flavour = "frappe",
+		no_italic = true,
+		-- flavour = "frappe",
 	}
 }

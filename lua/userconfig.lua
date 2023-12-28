@@ -16,17 +16,22 @@ vim.keymap.set('n', '<leader>fg', ":Telescope live_grep<CR>", { desc = "Live Gre
 vim.keymap.set('n', '<leader>fb', ":Telescope buffers<CR>", { desc = "Show all buffers" })
 
 -- Lsp stuff
-vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Display information about variable under cursor" })
-vim.keymap.set("n", "gd", function()
-	vim.lsp.buf.definition()
-end, { desc = "Go to definition" })
-vim.keymap.set("n", "<leader>fm", function()
-	vim.lsp.buf.format { async = true }
-end, { desc = "Lsp formatting" })
-vim.keymap.set("v", "<leader>fm", function()
-	vim.lsp.buf.format { async = true }
-end, { desc = "Lsp formatting in visual mdoe" })
-vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Adction" })
+vim.api.nvim_create_autocmd('LspAttach', {
+	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+	callback = function(ev)
+		vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = "Display information about variable under cursor" })
+		vim.keymap.set("n", "gd", function()
+			vim.lsp.buf.definition()
+		end, { desc = "Go to definition" })
+		vim.keymap.set("n", "<leader>fm", function()
+			vim.lsp.buf.format { async = true }
+		end, { desc = "Lsp formatting" })
+		vim.keymap.set("v", "<leader>fm", function()
+			vim.lsp.buf.format { async = true }
+		end, { desc = "Lsp formatting in visual mdoe" })
+		vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Adction" })
+	end,
+})
 
 -- Diagnostic stuff
 vim.keymap.set("n", "ld", ":Trouble document_diagnostics<CR>", { desc = "List document diagnostic" })
