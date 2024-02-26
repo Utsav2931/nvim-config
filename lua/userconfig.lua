@@ -25,7 +25,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.lsp.buf.definition()
 		end, { desc = "Go to definition" })
 		vim.keymap.set("n", "<leader>fm", function()
-			vim.lsp.buf.format { async = true }
+			vim.lsp.buf.format {
+				async = true,
+				filter = function(client) return client.name ~= "tsserver" end
+			}
 		end, { desc = "Lsp formatting" })
 		vim.keymap.set("v", "<leader>fm", function()
 			vim.lsp.buf.format { async = true }
@@ -36,7 +39,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 -- Diagnostic stuff
 vim.keymap.set("n", "<leader>ld", ":Trouble document_diagnostics<CR>", { desc = "List document diagnostic" })
-vim.keymap.set("n", "<leader>wd", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Workspace diagnostics"})
+vim.keymap.set("n", "<leader>wd", function() require("trouble").toggle("workspace_diagnostics") end,
+	{ desc = "Workspace diagnostics" })
 -- Nvim Tree
 vim.keymap.set("n", "<leader>vt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim tree" })
 
