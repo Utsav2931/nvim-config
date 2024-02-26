@@ -6,6 +6,7 @@ vim.o.termguicolors = true
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.scrolloff = 8
+vim.opt.pumheight = 10
 vim.cmd("colorscheme catppuccin")
 -- Custom keymaps
 
@@ -34,8 +35,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 })
 
 -- Diagnostic stuff
-vim.keymap.set("n", "ld", ":Trouble document_diagnostics<CR>", { desc = "List document diagnostic" })
-
+vim.keymap.set("n", "<leader>ld", ":Trouble document_diagnostics<CR>", { desc = "List document diagnostic" })
+vim.keymap.set("n", "<leader>wd", function() require("trouble").toggle("workspace_diagnostics") end, { desc = "Workspace diagnostics"})
 -- Nvim Tree
 vim.keymap.set("n", "<leader>vt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim tree" })
 
