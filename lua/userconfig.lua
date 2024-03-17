@@ -34,6 +34,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.lsp.buf.format { async = true }
 		end, { desc = "Lsp formatting in visual mdoe" })
 		vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Adction" })
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+			{ desc = "Renames all references" })
 	end,
 })
 
