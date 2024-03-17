@@ -9,6 +9,7 @@ vim.o.scrolloff = 8
 vim.opt.pumheight = 10
 vim.cmd("colorscheme catppuccin")
 -- Custom keymaps
+vim.keymap.set('n', '<ESC>', ":noh", { desc = "Remove highlight for search" })
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', ":Telescope find_files<CR>", { desc = "Find files" })
@@ -34,6 +35,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 			vim.lsp.buf.format { async = true }
 		end, { desc = "Lsp formatting in visual mdoe" })
 		vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, { desc = "Code Adction" })
+		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename,
+			{ desc = "Renames all references" })
 	end,
 })
 
